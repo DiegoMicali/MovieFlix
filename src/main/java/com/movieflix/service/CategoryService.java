@@ -18,7 +18,7 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Category saveCategory (Category category) {
+    public Category save(Category category) {
         return categoryRepository.save(category);
     }
 
@@ -26,7 +26,7 @@ public class CategoryService {
         return categoryRepository.findById(id);
     }
 
-    public void deleteById(Long id) {
+    public void delete(Long id) {
         categoryRepository.deleteById(id);
     }
 }
