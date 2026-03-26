@@ -27,7 +27,7 @@ public class Movie {
 
     private String description;
 
-    @Column(name = "realease_date")
+    @Column(name = "release_date")
     private LocalDate releaseDate;
 
     private double rating;
@@ -37,7 +37,7 @@ public class Movie {
     private LocalDate createdAt;
 
     @UpdateTimestamp
-    @Column(name = "update_at")
+    @Column(name = "updated_at")
     private LocalDate updatedAt;
 
     @ManyToMany
