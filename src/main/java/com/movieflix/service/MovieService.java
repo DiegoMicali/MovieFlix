@@ -38,12 +38,6 @@ public class MovieService {
         return movieRepository.findMovieByCategoriesId(categoryId);
     }
 
-    private List<Category> findCategories(List<Category> categories) {
-        List<Category> categoriesFound = new ArrayList<>();
-        categories.forEach(category -> categoryService.findById(category.getId()).ifPresent(categoriesFound::add));
-        return categoriesFound;
-    }
-
     private List<Streaming> findStreamings(List<Streaming> streamings) {
         List<Streaming> streamingsFound = new ArrayList<>();
         streamings.forEach(streaming -> streamingService.findById(streaming.getId()).ifPresent(streamingsFound::add));
@@ -52,10 +46,6 @@ public class MovieService {
 
     public Optional<Movie> findById(Long id) {
         return movieRepository.findById(id);
-    }
-
-    public void delete(Long id) {
-        movieRepository.deleteById(id);
     }
 
     public Optional<Movie> update(Long movieId, Movie updateMovie) {
@@ -82,5 +72,15 @@ public class MovieService {
         }
 
         return Optional.empty();
+    }
+
+    public void delete(Long id) {
+        movieRepository.deleteById(id);
+    }
+
+    private List<Category> findCategories(List<Category> categories) {
+        List<Category> categoriesFound = new ArrayList<>();
+        categories.forEach(category -> categoryService.findById(category.getId()).ifPresent(categoriesFound::add));
+        return categoriesFound;
     }
 }
