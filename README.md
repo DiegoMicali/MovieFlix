@@ -87,6 +87,15 @@ Client ──► Controller ──► Service ──► Repository ──► Pos
 ---
 
 ## 🚀 Getting Started
+### Environment Variables
+
+Configure these variables before running the application:
+
+- `MOVIEFLIX_SECURITY_SECRET` — JWT signing secret.
+- `DB_USERNAME` — PostgreSQL username.
+- `DB_PASSWORD` — PostgreSQL password.
+
+Keep real secrets and credentials out of version control.
 
 ### Prerequisites
 
@@ -113,8 +122,7 @@ The API will be available at `http://localhost:8080`.
 CREATE DATABASE movieflix;
 ```
 
-2. Adjust credentials in `src/main/resources/application.yaml` if needed (defaults: `postgres` / `postgres` on `localhost:5432`).
-
+2. Configure `DB_USERNAME`, `DB_PASSWORD`, and `MOVIEFLIX_SECURITY_SECRET` as environment variables before running the application.
 3. Run the application:
 
 ```bash
