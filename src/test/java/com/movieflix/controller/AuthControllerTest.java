@@ -37,8 +37,8 @@ class AuthControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                         {
-                            "email": "",
-                            "password": ""
+                            "email": "invalid-email",
+                            "password": "password123"
                         }
                         """)
         ).andExpect(
@@ -54,9 +54,9 @@ class AuthControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 "{
-                                "name":"",
-                                "email":"",
-                                "password":""}
+                                "name":"dummyName",
+                                "email":"   ",
+                                "password":"password123"}
                                 """))
                 .andExpect(MockMvcResultMatchers.status().isBadRequest());
 

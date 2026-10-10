@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotEmpty;
 public record UserRequest(@NotBlank(message = "Name can not be null")
                           String name,
                           @Email
-                          @NotEmpty(message = "Email can not be null")
+                          @NotBlank(message = "Email can not be null")
                           String email,
                           @NotBlank(message = "Password can not be null")
                           String password) {
