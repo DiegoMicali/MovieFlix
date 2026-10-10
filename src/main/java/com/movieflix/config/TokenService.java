@@ -17,6 +17,9 @@ public class TokenService {
     @Value("${movieflix.security.secret}")
     private String secret;
 
+    @Value("${movieflix.security.expiration}")
+    private Long expiration;
+
     public String geneteToken(User user) {
         Algorithm algorithm = Algorithm.HMAC256(secret);
 
@@ -24,7 +27,7 @@ public class TokenService {
                 .withSubject(user.getEmail())
                 .withClaim("userId", user.getId())
                 .withClaim("name", user.getName())
-                .withExpiresAt(Instant.now().plusSeconds(86400))
+                .withExpiresAt(Instant.now().plusSeconds(expiration))
                 .withIssuedAt(Instant.now())
                 .withIssuer("API Movieflix")
                 .sign(algorithm);
@@ -34,7 +37,7 @@ public class TokenService {
 
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
-            DecodedJWT jwt = JWT.require(algorithm)
+            DecodedJWT jwt = JWT.require(algorithm).withIssuer("API Movieflix")
                     .build()
                     .verify(token);
             return Optional.of(JWTUserData

@@ -8,8 +8,9 @@ services:
       - db
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/movieflix
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=postgres
+      - DB_USERNAME= ${DB_USERNAME}
+      - DB_PASSWORD= ${DB_PASSWORD}
+      - MOVIEFLIX_SECURITY_SECRET=${MOVIEFLIX_SECURITY_SECRET}
   
   db:
     image: postgres:latest
@@ -17,5 +18,5 @@ services:
       - "5432:5432"
     environment:
       - POSTGRES_DB=movieflix
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
