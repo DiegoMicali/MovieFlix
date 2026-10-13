@@ -38,13 +38,13 @@ public class MovieMapper {
 
         List<CategoryResponse> categories = movie.getCategories()
                 .stream()
-                .map(category -> CategoryMapper.toCategoryResponse(category))
+                .map(CategoryMapper::toCategoryResponse)
                 .toList();
 
 
         List<StreamingResponse> streamings = movie.getStreamings()
                 .stream()
-                .map(streaming -> StreamingMapper.toStreamingResponse(streaming))
+                .map(StreamingMapper::toStreamingResponse)
                 .toList();
 
         return MovieResponse.builder()

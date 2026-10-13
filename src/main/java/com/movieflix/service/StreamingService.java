@@ -1,13 +1,9 @@
 package com.movieflix.service;
 
-
-import com.movieflix.entity.Category;
-import com.movieflix.entity.Movie;
 import com.movieflix.entity.Streaming;
 import com.movieflix.repository.StreamingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;

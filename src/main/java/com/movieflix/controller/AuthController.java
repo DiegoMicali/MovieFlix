@@ -7,7 +7,6 @@ import com.movieflix.mapper.UserMapper;
 import com.movieflix.request.LoginRequest;
 import com.movieflix.request.UserRequest;
 import com.movieflix.response.LoginResponse;
-import com.movieflix.response.MovieResponse;
 import com.movieflix.response.UserResponse;
 import com.movieflix.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/movieflix/auth")
 @RequiredArgsConstructor
-@Tag(name = "User", description = "Resource responsable for registers of new users and login")
+@Tag(name = "User", description = "Resource responsible for registers of new users and login")
 public class AuthController {
 
     private final UserService userService;
@@ -60,7 +59,7 @@ public class AuthController {
 
         User user = (User) authentication.getPrincipal();
 
-        String token = tokenService.geneteToken(user);
+        String token = tokenService.generateToken(user);
 
         return ResponseEntity.ok(new LoginResponse(token));
 

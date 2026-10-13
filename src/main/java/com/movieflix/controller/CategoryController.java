@@ -4,8 +4,6 @@ import com.movieflix.entity.Category;
 import com.movieflix.mapper.CategoryMapper;
 import com.movieflix.request.CategoryRequest;
 import com.movieflix.response.CategoryResponse;
-import com.movieflix.response.MovieResponse;
-import com.movieflix.response.StreamingResponse;
 import com.movieflix.service.CategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -25,7 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/movieflix/category")
 @RequiredArgsConstructor
-@Tag(name = "Category", description = "Resource responsable for management of movie categories")
+@Tag(name = "Category", description = "Resource responsible for management of movie categories")
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -54,7 +52,7 @@ public class CategoryController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @Operation(summary = "Save Category", description = "Method to save a new streaming plataform",
+    @Operation(summary = "Save Category", description = "Method to save a new streaming platform",
             security = @SecurityRequirement(name = "bearerAuth"))
     @ApiResponse(responseCode = "201", description = "Category saved successfully",
             content = @Content(schema = @Schema(implementation = CategoryResponse.class)))
@@ -65,10 +63,10 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.CREATED).body(CategoryMapper.toCategoryResponse(savedCategory));
     }
 
-    @Operation(summary = "Delete Streaming by Id", description = "Method to delete a streaming plataform by Id",
+    @Operation(summary = "Delete Streaming by Id", description = "Method to delete a streaming platform by Id",
             security = @SecurityRequirement(name = "bearerAuth"))
-    @ApiResponse(responseCode = "204", description = "Successfully deleted the streaming plataform", content = @Content())
-    @ApiResponse(responseCode = "404", description = "Category not finded")
+    @ApiResponse(responseCode = "204", description = "Successfully deleted the streaming platform", content = @Content())
+    @ApiResponse(responseCode = "404", description = "Category not found")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteByCategoryById(@PathVariable Long id) {
         categoryService.delete(id);

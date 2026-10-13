@@ -6,6 +6,6 @@ import lombok.Builder;
 
 @Builder
 public record StreamingRequest(@Schema(type = "string", description = "Streaming name")
-                               @NotEmpty(message = "The streaming plataform can not be null")
+                               @NotEmpty(message = "The streaming platform can not be null")
                                String name) {
 }

@@ -24,7 +24,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/movieflix/movie")
 @RequiredArgsConstructor
-@Tag(name = "Movie", description = "Resource responsable for management of movies")
+@Tag(name = "Movie", description = "Resource responsible for management of movies")
 public class MovieController {
 
     private final MovieService movieService;
@@ -45,7 +45,7 @@ public class MovieController {
             security = @SecurityRequirement(name = "bearerAuth"))
     @ApiResponse(responseCode = "201", description = "Successfully found the movie",
             content = @Content(schema = @Schema(implementation = MovieResponse.class)))
-    @ApiResponse(responseCode = "404", description = "Movie not finded", content = @Content())
+    @ApiResponse(responseCode = "404", description = "Movie not found", content = @Content())
     @GetMapping("/{id}")
     public ResponseEntity<MovieResponse> findById(@PathVariable Long id) {
         return movieService.findById(id)
@@ -58,8 +58,8 @@ public class MovieController {
     @ApiResponse(responseCode = "201", description = "Movie saved successfully",
         content = @Content(schema = @Schema(implementation = MovieResponse.class)))
     @PostMapping
-    public ResponseEntity<MovieResponse> save(@Valid @RequestBody MovieRequest movieResquest) {
-        Movie savedMovie = movieService.save(MovieMapper.toMovie(movieResquest));
+    public ResponseEntity<MovieResponse> save(@Valid @RequestBody MovieRequest movieRequest) {
+        Movie savedMovie = movieService.save(MovieMapper.toMovie(movieRequest));
         return ResponseEntity.ok(MovieMapper.toMovieResponse(savedMovie));
     }
 
@@ -77,7 +77,7 @@ public class MovieController {
     @Operation(summary = "Delete Movies by Id", description = "Method to delete a movie by Id",
             security = @SecurityRequirement(name = "bearerAuth"))
     @ApiResponse(responseCode = "204", description = "Successfully deleted the movie", content = @Content())
-    @ApiResponse(responseCode = "404", description = "Movie not finded", content = @Content())
+    @ApiResponse(responseCode = "404", description = "Movie not found", content = @Content())
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMovieById(@PathVariable Long id) {
         Optional<Movie> optMovie = movieService.findById(id);

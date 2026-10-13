@@ -17,7 +17,7 @@ public class TokenService {
     @Value("${movieflix.security.secret}")
     private String secret;
 
-    public String geneteToken(User user) {
+    public String generateToken(User user) {
         Algorithm algorithm = Algorithm.HMAC256(secret);
 
         return JWT.create()

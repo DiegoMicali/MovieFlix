@@ -3,8 +3,6 @@ package com.movieflix.controller;
 import com.movieflix.entity.Streaming;
 import com.movieflix.mapper.StreamingMapper;
 import com.movieflix.request.StreamingRequest;
-import com.movieflix.response.LoginResponse;
-import com.movieflix.response.MovieResponse;
 import com.movieflix.response.StreamingResponse;
 import com.movieflix.service.StreamingService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -25,15 +23,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/movieflix/streaming")
 @RequiredArgsConstructor
-@Tag(name = "Streaming", description = "Resource responsable for management of streamings plataforms")
+@Tag(name = "Streaming", description = "Resource responsible for management of streaming platforms")
 public class StreamingController {
 
 
     private final StreamingService streamingService;
 
-    @Operation(summary = "Get Streamings", description = "Method to get a list of all streamings plataforms",
+    @Operation(summary = "Get Streamings", description = "Method to get a list of all streaming platforms",
             security = @SecurityRequirement(name = "bearerAuth"))
-    @ApiResponse(responseCode = "201", description = "Successfully found all streaming plataforms",
+    @ApiResponse(responseCode = "201", description = "Successfully found all streaming platforms",
             content = @Content(array = @ArraySchema(schema = @Schema(implementation = StreamingResponse.class))))
     @GetMapping
     public ResponseEntity<List<StreamingResponse>> getAllStreamings() {
@@ -44,9 +42,9 @@ public class StreamingController {
         return ResponseEntity.ok(streamings);
     }
 
-    @Operation(summary = "Get Streaming by Id", description = "Method to get a streaming plataform by Id",
+    @Operation(summary = "Get Streaming by Id", description = "Method to get a streaming platform by Id",
             security = @SecurityRequirement(name = "bearerAuth"))
-    @ApiResponse(responseCode = "201", description = "Successfully found the streaming plataform",
+    @ApiResponse(responseCode = "201", description = "Successfully found the streaming platform",
             content = @Content(schema = @Schema(implementation = StreamingResponse.class)))
     @GetMapping("/{id}")
     public ResponseEntity<StreamingResponse> getByStreamingId(@PathVariable Long id) {
@@ -55,9 +53,9 @@ public class StreamingController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @Operation(summary = "Save Streaming", description = "Method to save a new streaming plataform",
+    @Operation(summary = "Save Streaming", description = "Method to save a new streaming platform",
             security = @SecurityRequirement(name = "bearerAuth"))
-    @ApiResponse(responseCode = "201", description = "Streaming plataform saved successfully",
+    @ApiResponse(responseCode = "201", description = "Streaming platform saved successfully",
             content = @Content(schema = @Schema(implementation = StreamingResponse.class)))
     @PostMapping
     public ResponseEntity<StreamingResponse> saveStreaming(@Valid @RequestBody StreamingRequest streamingRequest) {
@@ -67,10 +65,10 @@ public class StreamingController {
     }
 
 
-    @Operation(summary = "Delete Streaming by Id", description = "Method to delete a streaming plataform by Id",
+    @Operation(summary = "Delete Streaming by Id", description = "Method to delete a streaming platform by Id",
             security = @SecurityRequirement(name = "bearerAuth"))
-    @ApiResponse(responseCode = "204", description = "Successfully deleted the streaming plataform", content = @Content())
-    @ApiResponse(responseCode = "404", description = "Streaming plataform not finded", content = @Content())
+    @ApiResponse(responseCode = "204", description = "Successfully deleted the streaming platform", content = @Content())
+    @ApiResponse(responseCode = "404", description = "Streaming platform not found", content = @Content())
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteByStreamingById(@PathVariable Long id) {
         streamingService.delete(id);

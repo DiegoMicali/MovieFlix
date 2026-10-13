@@ -20,7 +20,7 @@ public record MovieRequest(@Schema(type = "string", description = "Movie name")
                            double rating,
                            @Schema(type = "array", description = "List of categories the movie belongs to")
                            List<Long> categories,
-                           @Schema(type = "string", description = "list of the streamings plataforms where you can watch the movie")
+                           @Schema(type = "string", description = "list of the streaming platforms where you can watch the movie")
                            List<Long> streamings
                             ) {
 }

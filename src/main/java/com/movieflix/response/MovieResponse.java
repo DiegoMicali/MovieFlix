@@ -2,7 +2,6 @@ package com.movieflix.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 import java.util.List;
